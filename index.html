@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUKARUGWIZA Annonciatha | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"></div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#bio">Bio</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hero" id="home">
+      <img src="my_photo.jpg" alt="MUKARUGWIZA Annonciatha" class="profile-img">
+      <h1 class="animated-header">MUKARUGWIZA Annonciatha</h1>
+      <p class="tagline">ICT Trainer | IT Technician | Aspiring Data Engineer</p>
+      <div class="hero-buttons">
+        <a href="MUKARUGWIZA_Annonciatha_CV.pdf" download class="btn btn-primary"><i class="fas fa-download"></i> Download CV (PDF)</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Bio Section -->
+    <section id="bio">
+      <div class="container">
+        <h2>Bio</h2>
+        <div class="bio-card">
+          <p>MUKARUGWIZA Annonciatha is an aspiring Data Engineer with a strong interest in databases, data analysis, and system design. She is currently developing her skills in understanding data flow, database management, and how modern systems operate behind applications.</p>
+          <p>With a background in teaching Software Development, she has built strong communication skills and the ability to explain complex concepts in a clear and structured manner.</p>
+          <p>Her key strengths include database management, data analysis, and system thinking. She is recognized for her discipline, consistency, and ability to learn quickly while applying knowledge to practical scenarios.</p>
+          <p>Her career goal is to help organizations manage and analyze data effectively to improve decision-making and system performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Elevator Pitch Section -->
+    <section id="pitch">
+      <div class="container">
+        <h2>Elevator Pitch</h2>
+        <div class="pitch-card">
+          <p>My name is MUKARUGWIZA Annonciatha.</p>
+          <p>I am a motivated Data Engineering learner with a strong interest in databases, data analysis, and understanding how systems work behind applications. I also have experience teaching Software Development, which has strengthened my ability to explain complex concepts in a clear and structured way.</p>
+          <p>My top skills include database management, data analysis, and system thinking. What makes me stand out is my ability to understand how data flows through systems from input to output, as well as my discipline and consistency in learning and practicing new technologies.</p>
+          <p>My goal is to help organizations organize, manage, and analyze data effectively to improve decision-making and system performance.</p>
+          <p>Currently, I am looking for opportunities to grow in the field of Data Engineering and contribute to real‑world data projects where I can apply my skills while continuing to learn and develop professionally.</p>
+          <p>Thank you.</p>
+          <div class="pitch-video">
+            <button id="recordBtn" class="btn btn-primary"><i class="fas fa-video"></i> Watch my pitch</button>
+            <div id="videoContainer" style="display: none; margin-top: 20px;">
+              <video id="pitchVideo" controls width="100%" style="max-width: 500px; border-radius: 12px;">
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p>🎥  recorded</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section with Collapsible Cards -->
+    <section id="portfolio">
+      <div class="container">
+        <h2>Portfolio / Work Samples</h2>
+        <div class="cards-grid">
+          <div class="card collapsible">
+            <div class="card-header">
+              <h3>Skill Tree TVET Learning Platform</h3>
+              <span class="toggle-icon">+</span>
+            </div>
+            <div class="card-content">
+              <p><strong>Ongoing Project</strong> – Designing a digital platform for TVET learning and student tracking. Integrated software development and data management concepts to support practical ICT skills development. Working independently to build scalable solutions for vocational education.</p>
+            </div>
+          </div>
+          <div class="card collapsible">
+            <div class="card-header">
+              <h3>ICT Curriculum Enhancement</h3>
+              <span class="toggle-icon">+</span>
+            </div>
+            <div class="card-content">
+              <p>Developed and delivered training in PHP, JavaScript, Python, and database systems for 120+ students annually. Revamped curriculum leading to higher practical assessment pass rates.</p>
+            </div>
+          </div>
+          <div class="card collapsible">
+            <div class="card-header">
+              <h3>IT Support & Networking</h3>
+              <span class="toggle-icon">+</span>
+            </div>
+            <div class="card-content">
+              <p>Reduced system downtime by 30% at Wise Tech Ltd by installing, maintaining, and troubleshooting hardware and small office networks. Also assisted in database maintenance ensuring data integrity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Social -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contact Information</h2>
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:annasiza10@gmail.com">annasiza10@gmail.com</a></p>
+          <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="#">https://www.linkedin.com/in/mukarugwiza-annonciatha-b0039a1a0/</a></p>
+          <p><i class="fab fa-github"></i> GitHub: <a href="#">https://github.com/MUKARUGWIZAANNONCIATHA</a></p>
+          <p><i class="fab fa-whatsapp"></i> WhatsApp: +250 726062138</p>
+          <p><i class="fas fa-phone"></i> Phone: +250 782 513 700</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MUKARUGWIZA Annonciatha. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
