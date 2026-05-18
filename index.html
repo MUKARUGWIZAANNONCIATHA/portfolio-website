@@ -3,28 +3,494 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MUKARUGWIZA Annonciatha | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <title>MUKARUGWIZA Annonciatha | Data Engineer Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+      background: #ffffff;
+      scroll-behavior: smooth;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    section {
+      padding: 5rem 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Delay each section */
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+    section:nth-child(6) { animation-delay: 0.6s; }
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: #2563eb;
+      border-radius: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: all 0.3s;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    nav a {
+      text-decoration: none;
+      color: #1f2937;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #2563eb;
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #2563eb;
+    }
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 0 0 40px 40px;
+    }
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border: 4px solid white;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      animation: fadeInDown 0.8s ease;
+    }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .tagline {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 1rem auto;
+      opacity: 0.95;
+    }
+    /* Buttons */
+    .btn {
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 0.5rem;
+      display: inline-block;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: white;
+      color: #667eea;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: white;
+      color: #667eea;
+      transform: translateY(-3px);
+    }
+    .btn-small {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+    }
+    /* Bio Card */
+    .bio-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 2rem;
+      border-radius: 24px;
+      line-height: 1.8;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .bio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    }
+    /* Values Grid */
+    .values-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .value-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      flex: 1;
+      min-width: 200px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .value-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+    }
+    .value-card i {
+      font-size: 2.8rem;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
+    .value-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    /* Portfolio Cards */
+    .card {
+      background: white;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    .card-header:hover {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    }
+    .card-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .toggle-icon {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #2563eb;
+      transition: transform 0.3s;
+      display: inline-block;
+    }
+    .card-header:hover .toggle-icon {
+      transform: rotate(90deg);
+    }
+    .card-content {
+      padding: 0 1.8rem 1.8rem 1.8rem;
+      display: none;
+      border-top: 1px solid #e2e8f0;
+      animation: fadeSlideDown 0.4s ease;
+    }
+    .card-content.show {
+      display: block;
+    }
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Project Showcase */
+    .project-showcase {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+    .badge-deployed {
+      background: #22c55e20;
+      color: #15803d;
+    }
+    .badge-testing {
+      background: #eab30820;
+      color: #854d0e;
+    }
+    .project-links {
+      margin: 1rem 0;
+    }
+    /* Screenshot Gallery */
+    .screenshot-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .screenshot-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    .screenshot-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    .screenshot-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .screenshot-card:hover img {
+      transform: scale(1.05);
+    }
+    .screenshot-card p {
+      padding: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    /* Pitch Section */
+    .pitch-card {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      padding: 2rem;
+      border-radius: 24px;
+      text-align: center;
+    }
+    .pitch-video-placeholder {
+      margin-top: 1.5rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 16px;
+      border: 2px dashed #cbd5e1;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .pitch-video-placeholder:hover {
+      border-color: #2563eb;
+      background: #eef2ff;
+    }
+    /* Fun Fact */
+    .fun-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 28px;
+      text-align: center;
+      font-size: 1.1rem;
+      transition: transform 0.3s;
+    }
+    .fun-card:hover {
+      transform: scale(1.02);
+    }
+    .fun-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    /* Contact */
+    .contact-info {
+      background: #f8fafc;
+      padding: 2rem;
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      transition: all 0.3s;
+    }
+    .contact-info p {
+      margin: 0.5rem 0;
+      transition: transform 0.2s;
+    }
+    .contact-info p:hover {
+      transform: translateX(5px);
+    }
+    .contact-info a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .contact-info i {
+      width: 30px;
+      color: #2563eb;
+    }
+    .contact-cta {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+      border-left: 5px solid #2563eb;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .contact-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1f2937;
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav>
-      <div class="logo"></div>
+      <div class="logo">A.M.</div>
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#bio">Bio</a></li>
+        <li><a href="#values">How I Work</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#pitch">Pitch</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
     <div class="hero" id="home">
-      <img src="my_photo.jpg" alt="MUKARUGWIZA Annonciatha" class="profile-img">
-      <h1 class="animated-header">MUKARUGWIZA Annonciatha</h1>
-      <p class="tagline">ICT Trainer | IT Technician | Aspiring Data Engineer</p>
+      <img src="my_photo.jpg" alt="MUKARUGWIZA Annonciatha" class="profile-img" onerror="this.src='https://placehold.co/180x180?text=Photo'">
+      <h1>MUKARUGWIZA Annonciatha</h1>
+      <p class="tagline">I turn messy data into clear decisions :with discipline, curiosity, and a teacher's heart for explaining the complex simply.</p>
       <div class="hero-buttons">
-        <a href="MUKARUGWIZA_Annonciatha_CV.pdf" download class="btn btn-primary"><i class="fas fa-download"></i> Download CV (PDF)</a>
+        <a href="MUKARUGWIZA_Annonciatha_CV.pdf" download class="btn btn-primary"><i class="fas fa-download"></i> Download CV</a>
         <a href="#contact" class="btn btn-outline">Contact Me</a>
       </div>
     </div>
@@ -36,85 +502,137 @@
       <div class="container">
         <h2>Bio</h2>
         <div class="bio-card">
-          <p>MUKARUGWIZA Annonciatha is an aspiring Data Engineer with a strong interest in databases, data analysis, and system design. She is currently developing her skills in understanding data flow, database management, and how modern systems operate behind applications.</p>
-          <p>With a background in teaching Software Development, she has built strong communication skills and the ability to explain complex concepts in a clear and structured manner.</p>
-          <p>Her key strengths include database management, data analysis, and system thinking. She is recognized for her discipline, consistency, and ability to learn quickly while applying knowledge to practical scenarios.</p>
-          <p>Her career goal is to help organizations manage and analyze data effectively to improve decision-making and system performance.</p>
+          <p><strong>Hi, I'm Annonciatha.</strong> I'm an aspiring Data Engineer who believes that good data shouldn't be mysterious — it should be clear, trustworthy, and actually useful.</p>
+          <p>Before falling in love with data, I taught Software Development. That experience taught me how to <strong>explain complex ideas simply</strong>. Now I bring that clarity to databases, data flows, and system design.</p>
+          <p>My superpowers? <strong>Database management, data analysis, and systems thinking</strong> — wrapped in discipline, consistency, and fast learning.</p>
+          <p>🎯 <strong>My goal:</strong> Help organizations turn messy data into confident decisions. Open to entry-level Data Engineer roles or collaborations.</p>
         </div>
       </div>
     </section>
 
-    <!-- Elevator Pitch Section -->
+    <!-- How I Work -->
+    <section id="values" style="background: #f8fafc;">
+      <div class="container">
+        <h2>How I Work</h2>
+        <div class="values-grid">
+          <div class="value-card"><i class="fas fa-brain"></i><h3>Systems Thinker</h3><p>I see how data flows from source to insight, ensuring nothing gets lost.</p></div>
+          <div class="value-card"><i class="fas fa-chalkboard-user"></i><h3>Teacher's Mindset</h3><p>I document everything so my team never gets lost.</p></div>
+          <div class="value-card"><i class="fas fa-clock"></i><h3>Discipline Over Talent</h3><p>Consistent action beats perfectionism every time.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+      <div class="container">
+        <h2>Portfolio / Work Samples</h2>
+
+        <!-- ICT Curriculum Enhancement - First Card (Open by default) -->
+        <div class="card" id="curriculum-card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <h3>📚 ICT Curriculum Enhancement</h3>
+            <span class="toggle-icon">−</span>
+          </div>
+          <div class="card-content" style="display: block;">
+            <p>Developed and delivered training in PHP, JavaScript, Python, and database systems for <strong>120+ students annually</strong>. Revamped curriculum leading to <strong>higher practical assessment pass rates</strong>.</p>
+          </div>
+        </div>
+
+        <!-- IT Support & Networking - Second Card (Closed by default) -->
+        <div class="card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <h3>💻 IT Support & Networking</h3>
+            <span class="toggle-icon">+</span>
+          </div>
+          <div class="card-content">
+            <p>Reduced system downtime by <strong>30%</strong> at Wise Tech Ltd by installing, maintaining, and troubleshooting hardware and small office networks. Also assisted in database maintenance ensuring data integrity.</p>
+          </div>
+        </div>
+
+        <!-- SkillTree TVET Platform - Third Card (Closed by default) -->
+        <div class="card">
+          <div class="card-header" onclick="toggleCard(this)">
+            <h3>🏆 SkillTree TVET Learning Platform</h3>
+            <span class="toggle-icon">+</span>
+          </div>
+          <div class="card-content">
+            <div class="project-showcase">
+              <p>
+                <span class="status-badge badge-deployed">✅ DEPLOYED</span>
+                <span class="status-badge badge-testing">🧪 TESTING PHASE</span>
+              </p>
+              <p><strong>Project:</strong> A digital platform for TVET learning and student tracking. AI-powered content generation, secure assessments, and company matching for internships. Built with data management at its core.</p>
+              
+              <div class="project-links">
+                <a href="https://skilltree.free.nf" target="_blank" class="btn btn-primary btn-small"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              </div>
+
+              <p><strong>📌 Current phase:</strong> Deployed and under active testing. Collecting feedback to improve UX and performance.</p>
+              
+              <p><strong>📸 Screenshots (click to enlarge):</strong></p>
+              <div class="screenshot-gallery">
+                <div class="screenshot-card" onclick="event.stopPropagation(); openModal('login.png')">
+                  <img src="login.png" alt="Login Page" onerror="this.src='https://placehold.co/200x140?text=Login'">
+                  <p>🔐 Login Page</p>
+                </div>
+                <div class="screenshot-card" onclick="event.stopPropagation(); openModal('index.png')">
+                  <img src="index.png" alt="Homepage" onerror="this.src='https://placehold.co/200x140?text=Home'">
+                  <p>🏠 Homepage</p>
+                </div>
+                <div class="screenshot-card" onclick="event.stopPropagation(); openModal('index2.png')">
+                  <img src="index2.png" alt="Features" onerror="this.src='https://placehold.co/200x140?text=Features'">
+                  <p>✨ Features</p>
+                </div>
+                <div class="screenshot-card" onclick="event.stopPropagation(); openModal('student_dashboard.png')">
+                  <img src="student_dashboard.png" alt="Student Dashboard" onerror="this.src='https://placehold.co/200x140?text=Student'">
+                  <p>👩‍🎓 Student Dashboard</p>
+                </div>
+                <div class="screenshot-card" onclick="event.stopPropagation(); openModal('teacher_dashboard.png')">
+                  <img src="teacher_dashboard.png" alt="Teacher Dashboard" onerror="this.src='https://placehold.co/200x140?text=Teacher'">
+                  <p>👩‍🏫 Teacher Dashboard</p>
+                </div>
+                <div class="screenshot-card" onclick="event.stopPropagation(); openModal('teacher_dashboard2.png')">
+                  <img src="teacher_dashboard2.png" alt="Analytics" onerror="this.src='https://placehold.co/200x140?text=Analytics'">
+                  <p>📊 Analytics</p>
+                </div>
+              </div>
+              <p style="font-size: 0.8rem; margin-top: 1rem; color: #64748b;"><i class="fas fa-info-circle"></i> Testing in progress — feedback welcome!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- Elevator Pitch Section -->
+        <!-- Elevator Pitch Section -->
     <section id="pitch">
       <div class="container">
         <h2>Elevator Pitch</h2>
         <div class="pitch-card">
-          <p>My name is MUKARUGWIZA Annonciatha.</p>
+          <p><strong>🎤 My name is MUKARUGWIZA Annonciatha.</strong></p>
           <p>I am a motivated Data Engineering learner with a strong interest in databases, data analysis, and understanding how systems work behind applications. I also have experience teaching Software Development, which has strengthened my ability to explain complex concepts in a clear and structured way.</p>
-          <p>My top skills include database management, data analysis, and system thinking. What makes me stand out is my ability to understand how data flows through systems from input to output, as well as my discipline and consistency in learning and practicing new technologies.</p>
+          <p>My top skills include <strong>database management, data analysis, and system thinking</strong>. What makes me stand out is my ability to understand how data flows through systems from input to output, as well as my discipline and consistency in learning and practicing new technologies.</p>
           <p>My goal is to help organizations organize, manage, and analyze data effectively to improve decision-making and system performance.</p>
           <p>Currently, I am looking for opportunities to grow in the field of Data Engineering and contribute to real‑world data projects where I can apply my skills while continuing to learn and develop professionally.</p>
-          <p>Thank you.</p>
-          <div class="pitch-video">
-            <button id="recordBtn" class="btn btn-primary"><i class="fas fa-video"></i> Watch my pitch</button>
-            <div id="videoContainer" style="display: none; margin-top: 20px;">
-              <video id="pitchVideo" controls width="100%" style="max-width: 500px; border-radius: 12px;">
-                <source src="" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <p>🎥  recorded</p>
-            </div>
-          </div>
+          <p><em>📹 Video pitch available upon request.</em></p>
         </div>
       </div>
     </section>
 
-    <!-- Portfolio Section with Collapsible Cards -->
-    <section id="portfolio">
-      <div class="container">
-        <h2>Portfolio / Work Samples</h2>
-        <div class="cards-grid">
-          <div class="card collapsible">
-            <div class="card-header">
-              <h3>Skill Tree TVET Learning Platform</h3>
-              <span class="toggle-icon">+</span>
-            </div>
-            <div class="card-content">
-              <p><strong>Ongoing Project</strong> – Designing a digital platform for TVET learning and student tracking. Integrated software development and data management concepts to support practical ICT skills development. Working independently to build scalable solutions for vocational education.</p>
-            </div>
-          </div>
-          <div class="card collapsible">
-            <div class="card-header">
-              <h3>ICT Curriculum Enhancement</h3>
-              <span class="toggle-icon">+</span>
-            </div>
-            <div class="card-content">
-              <p>Developed and delivered training in PHP, JavaScript, Python, and database systems for 120+ students annually. Revamped curriculum leading to higher practical assessment pass rates.</p>
-            </div>
-          </div>
-          <div class="card collapsible">
-            <div class="card-header">
-              <h3>IT Support & Networking</h3>
-              <span class="toggle-icon">+</span>
-            </div>
-            <div class="card-content">
-              <p>Reduced system downtime by 30% at Wise Tech Ltd by installing, maintaining, and troubleshooting hardware and small office networks. Also assisted in database maintenance ensuring data integrity.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact & Social -->
+    <!-- Contact Section -->
     <section id="contact">
       <div class="container">
-        <h2>Contact Information</h2>
+        <h2>Contact</h2>
         <div class="contact-info">
-          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:annasiza10@gmail.com">annasiza10@gmail.com</a></p>
-          <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="#">https://www.linkedin.com/in/mukarugwiza-annonciatha-b0039a1a0/</a></p>
-          <p><i class="fab fa-github"></i> GitHub: <a href="#">https://github.com/MUKARUGWIZAANNONCIATHA</a></p>
-          <p><i class="fab fa-whatsapp"></i> WhatsApp: +250 726062138</p>
-          <p><i class="fas fa-phone"></i> Phone: +250 782 513 700</p>
+          <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:annasiza10@gmail.com">annasiza10@gmail.com</a></p>
+          <p><i class="fab fa-linkedin"></i> <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mukarugwiza-annonciatha-b0039a1a0/" target="_blank">linkedin.com/in/mukarugwizaannonciatha</a></p>
+          <p><i class="fab fa-github"></i> <strong>GitHub:</strong> <a href="https://github.com/MUKARUGWIZAANNONCIATHA" target="_blank">github.com/MUKARUGWIZAANNONCIATHA</a></p>
+          <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> +250 726062138</p>
+          <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +250 782 513 700</p>
+        </div>
+        <div class="contact-cta">
+          <p><strong>📢 Open to entry-level Data Engineer roles ,let's connect!</strong></p>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem;">📍 Based in Rwanda | Available for remote or on-site opportunities</p>
         </div>
       </div>
     </section>
@@ -124,6 +642,83 @@
     <p>&copy; 2025 MUKARUGWIZA Annonciatha. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <img id="modalImage" src="" alt="Screenshot">
+  </div>
+
+  <script>
+    // Toggle card function with animation
+    function toggleCard(headerElement) {
+      const card = headerElement.parentElement;
+      const content = card.querySelector('.card-content');
+      const icon = headerElement.querySelector('.toggle-icon');
+      
+      if (content.style.display === 'none' || getComputedStyle(content).display === 'none') {
+        content.style.display = 'block';
+        icon.textContent = '−';
+        // Add animation class
+        content.classList.add('show');
+      } else {
+        content.style.display = 'none';
+        icon.textContent = '+';
+        content.classList.remove('show');
+      }
+    }
+
+    // Modal functions for screenshots
+    function openModal(src) {
+      event.stopPropagation();
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      if (modal && modalImg) {
+        modal.style.display = 'flex';
+        modalImg.src = src;
+        console.log("Opening image: " + src);
+      } else {
+        console.error("Modal not found!");
+      }
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      if (modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Make sure first card (ICT Curriculum) is open on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstCardContent = document.querySelector('#curriculum-card .card-content');
+      const firstCardIcon = document.querySelector('#curriculum-card .toggle-icon');
+      if (firstCardContent) {
+        firstCardContent.style.display = 'block';
+        if (firstCardIcon) firstCardIcon.textContent = '−';
+      }
+      console.log("Portfolio loaded successfully!");
+    });
+  </script>
 </body>
 </html>
